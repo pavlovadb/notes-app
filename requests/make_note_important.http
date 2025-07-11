@@ -1,0 +1,9 @@
+PUT http://localhost:3001/api/notes/687180edcf53aebeb94858c1
+
+Content-Type: application/json
+
+{
+  id: "687180edcf53aebeb94858c1",
+  "content": "Wdym",
+  "important": true
+}
