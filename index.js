@@ -4,11 +4,12 @@ const app = express();
 const Note = require("./models/note");
 const { Client } = require('pg');
 
+const postgresPwd = process.env.POSTGRES_PWD;
 const client = new Client({
             user: 'postgres',
             host: 'localhost',
-            database: 'sm_app',
-            password: `{$POSTGRES_PWD}`,
+            database: 'dramaliev',
+            password: postgresPwd,
             port: 5432,
         });
 
@@ -120,7 +121,7 @@ const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: "unknown endpoint" });
 };
 
-const PORT = 3001;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+const port = process.env.PORT;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
