@@ -8,6 +8,7 @@ const client = new Client({
             user: 'postgres',
             host: 'localhost',
             database: 'dramaliev',
+            password: 'password',
             port: 5432,
         });
 
@@ -49,7 +50,6 @@ app.get("/api/users", async (request, response) => {
   } finally {
     client.end()
   }
-
   response.json(users);
 })
 
