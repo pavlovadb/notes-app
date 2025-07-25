@@ -2,6 +2,14 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const Note = require("./models/note");
+const { Client } = require('pg');
+
+const client = new Client({
+            user: 'postgres',
+            host: 'localhost',
+            database: 'dramaliev',
+            port: 5432,
+        });
 
 let notes = [
   {
@@ -26,7 +34,24 @@ const generateId = () => {
 };
 
 app.use(express.static("dist"));
+
 app.use(express.json());
+
+app.get("/api/users", async (request, response) => {
+  await client.connect()
+  let users; 
+
+  try {
+    const result = await client.query("SELECT users from users");
+    users = result.rows;
+  } catch (err) {
+    console.error('Error executing query:', err);
+  } finally {
+    client.end()
+  }
+
+  response.json(users);
+})
 
 app.get("/api/notes", async (request, response) => {
   const notes = await Note.find({});
