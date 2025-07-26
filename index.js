@@ -1,3 +1,4 @@
+const tracer = require('dd-trace').init();
 require("dotenv").config();
 const express = require("express");
 const app = express();
@@ -8,7 +9,7 @@ const postgresPwd = process.env.POSTGRES_PWD;
 const client = new Client({
             user: 'postgres',
             host: 'localhost',
-            database: 'dramaliev',
+            database: 'sm_app',
             password: postgresPwd,
             port: 5432,
         });
