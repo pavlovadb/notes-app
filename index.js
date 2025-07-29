@@ -9,7 +9,7 @@ const postgresPwd = process.env.POSTGRES_PWD;
 const client = new Client({
             user: 'postgres',
             host: 'localhost',
-            database: 'sm_app',
+            database: 'dramaliev',
             password: postgresPwd,
             port: 5432,
         });
