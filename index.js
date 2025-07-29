@@ -5,15 +5,6 @@ const app = express();
 const Note = require("./models/note");
 const { Client } = require('pg');
 
-const postgresPwd = process.env.POSTGRES_PWD;
-const client = new Client({
-            user: 'postgres',
-            host: 'localhost',
-            database: 'dramaliev',
-            password: postgresPwd,
-            port: 5432,
-        });
-
 let notes = [
   {
     id: "1",
@@ -41,6 +32,14 @@ app.use(express.static("dist"));
 app.use(express.json());
 
 app.get("/api/users", async (request, response) => {
+  const postgresPwd = process.env.POSTGRES_PWD;
+  const client = new Client({
+            user: 'postgres',
+            host: 'localhost',
+            database: 'sm_app',
+            password: postgresPwd,
+            port: 5432,
+        });
   await client.connect()
   let users; 
 
@@ -50,7 +49,7 @@ app.get("/api/users", async (request, response) => {
   } catch (err) {
     console.error('Error executing query:', err);
   } finally {
-    await client.end()
+    // await client.end()
   }
   response.json(users);
 })
