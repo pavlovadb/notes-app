@@ -50,7 +50,7 @@ app.get("/api/users", async (request, response) => {
   } catch (err) {
     console.error('Error executing query:', err);
   } finally {
-    client.end()
+    await client.end()
   }
   response.json(users);
 })
