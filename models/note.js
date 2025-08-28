@@ -28,4 +28,4 @@ noteSchema.set('toJSON', {
 
 module.exports = mongoose.model('Note', noteSchema)
 
-console.log("test")
+console.log("testing")
