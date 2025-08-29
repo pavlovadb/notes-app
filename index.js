@@ -70,7 +70,7 @@ app.get("/api/notes/:id", async (request, response) => {
   //   response.json(note);
   // } else {
   //   response.status(404).end();
-  // }
+  // } 
 });
 
 app.delete("/api/notes/:id", async (request, response) => {
